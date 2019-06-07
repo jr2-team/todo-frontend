@@ -1,26 +1,31 @@
 {
-  "name": "reactts",
+  "name": "todo-frontend-react",
   "version": "1.0.0",
+  "author": "",
+  "license": "ISC",
   "description": "todo react project with typescript",
   "main": "index.html",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "webpack"
+    "start": "webpack-dev-server --mode development --hot --progress --color --port 3000 --open",
+    "build": "webpack -p --progress --colors"
   },
-  "author": "",
-  "license": "ISC",
   "dependencies": {
-    "@types/react": "^16.8.19",
-    "@types/react-dom": "^16.8.4",
-    "@types/react-redux": "^7.0.9",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-redux": "^7.0.3",
     "redux": "^4.0.1"
   },
   "devDependencies": {
+    "@types/react": "^16.8.19",
+    "@types/react-dom": "^16.8.4",
+    "@types/react-redux": "^7.0.9",
     "awesome-typescript-loader": "^5.2.1",
     "source-map-loader": "^0.2.4",
-    "typescript": "^3.5.1"
+    "tslint": "^5.17.0",
+    "tslint-react": "^4.0.0",
+    "typescript": "^3.5.1",
+    "webpack": "^4.33.0",
+    "webpack-cli": "^3.3.2",
+    "webpack-dev-server": "^3.7.0"
   }
 }
