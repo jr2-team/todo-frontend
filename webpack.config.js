@@ -17,5 +17,10 @@ module.exports = {
     externals: {
         "react": "React",
         "react-dom": "ReactDOM"
+    },
+    node: {
+        fs: "empty",
+        net: "empty",
+        tls: "empty"
     }
 }
