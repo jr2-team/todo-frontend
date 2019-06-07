@@ -1,16 +1,13 @@
-import * as React from "react";
+import * as React from 'react';
+import Header from './Header';
+import TaskManager from './TaskManager';
 
-export interface BaseScreenProps { 
-    title: String
-}
-
-class BaseScreen extends React.Component<BaseScreenProps, object> {
+class BaseScreen extends React.Component<object, object> {
     render() {
-        let text = this.props.title;
-
         return(
             <div>
-                <h1>{text}</h1>
+                <Header />
+                <TaskManager />
             </div>
         );
     }
