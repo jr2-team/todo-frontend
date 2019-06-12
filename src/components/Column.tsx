@@ -1,10 +1,7 @@
 import * as React from 'react';
-import { string } from 'prop-types';
-import { styled } from '@material-ui/styles';
-import { Paper, Typography, Card } from '@material-ui/core';
-import { typography } from '@material-ui/system';
-import Task from './Task';
 import { Droppable } from 'react-beautiful-dnd';
+import styled from 'styled-components';
+import Task from './Task';
 
 interface IColumnProps {
     key: any,
@@ -12,21 +9,32 @@ interface IColumnProps {
     tasks: Array<{id: string, content: string}>
 }
 
-const MyPaper = styled(Paper) ({
-    margin: '16px 16px',
-});
+const Container = styled.div`
+    margin: 8px;
+    border: 1px solid lightgrey;
+    border-radius: 2px;
+    min-width: 220px;
+    width: 33%;
+    display: flex;
+    flex-direction: column;
+`;
 
-const TaskList = styled(Card) ({
-    padding: '8px',
-});
+const Title = styled.h3`
+    padding: 8px;
+    margin: 0px;
+`;
+
+const TaskList = styled.div`
+    padding: 8px;
+    flex-grow: 1;
+    min-height: 100px;
+`;
 
 export default class Column extends React.Component<IColumnProps, object> {
     render() {
         return (
-            <MyPaper>
-                <Typography component='h1' color='primary'>
-                        {this.props.column.title}
-                </Typography>
+            <Container>
+                <Title>{this.props.column.title}</Title>
                 <Droppable droppableId={this.props.column.id}>
                     {(provided) => (
                         <TaskList 
@@ -39,7 +47,7 @@ export default class Column extends React.Component<IColumnProps, object> {
                         </TaskList>
                     )}
                 </Droppable>
-            </MyPaper>
+            </Container>
         );
     }
 }

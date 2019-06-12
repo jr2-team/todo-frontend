@@ -1,19 +1,20 @@
 import * as React from 'react';
-import { styled } from '@material-ui/styles';
 import { Draggable } from 'react-beautiful-dnd';
-import { Card } from '@material-ui/core';
+import styled from 'styled-components';
 
 interface ITaskProps {
-    key: any,
-    task: { id: string, content: string},
-    index: number
+    key: any;
+    task: { id: string, content: string };
+    index: number;
 }
 
-const MyCard = styled(Card) ({
-    padding: '8px',
-    textAlign: 'justify',
-    margin: '8px 0px',
-});
+const MyCard = styled.div`
+    border: 1px solid lightgrey;
+    border-radius: 2px;
+    padding: 8px;
+    margin-bottom: 8px;
+    background-color: white;
+`;
 
 export default class Task extends React.Component<ITaskProps, object> {
     render() {

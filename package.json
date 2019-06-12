@@ -17,12 +17,14 @@
     "react-beautiful-dnd": "^11.0.3",
     "react-dom": "^16.8.6",
     "react-redux": "^7.0.3",
-    "redux": "^4.0.1"
+    "redux": "^4.0.1",
+    "styled-components": "^4.3.1"
   },
   "devDependencies": {
     "@types/react": "^16.8.19",
     "@types/react-dom": "^16.8.4",
     "@types/react-redux": "^7.0.9",
+    "@types/styled-components": "^4.1.16",
     "awesome-typescript-loader": "^5.2.1",
     "source-map-loader": "^0.2.4",
     "tslint": "^5.17.0",
