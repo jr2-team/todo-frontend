@@ -2,7 +2,8 @@ module.exports = {
     entry: "./src/index.tsx",
     output: {
         filename: "bundle.js",
-        path: __dirname + "/dist"
+        path: __dirname + "/dist",
+        devtoolModuleFilenameTemplate: '[absolute-resource-path]'
     },
     devtool: "source-map",
     resolve: {
@@ -18,6 +19,7 @@ module.exports = {
         "react": "React",
         "react-dom": "ReactDOM"
     },
+    target: "web",
     node: {
         fs: "empty",
         net: "empty",

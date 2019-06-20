@@ -5,12 +5,10 @@ interface ITaskListItemProps {
     task: ITask
 }
 
-interface ITaskListState { }
-
-export class TaskListItem extends React.Component<ITaskListItemProps, ITaskListState> {
-    public render() {
-        return (
-            <p>{this.props.task.name} - {this.props.task.status}</p>
-        )
-    }
+const TaskListItem: React.FC<ITaskListItemProps> = (props: ITaskListItemProps) => {
+    return (
+        <p>{props.task.name} - {props.task.status}</p>
+    )
 }
+
+export default TaskListItem

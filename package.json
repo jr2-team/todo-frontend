@@ -10,6 +10,7 @@
     "build": "webpack -p --progress --colors --watch"
   },
   "dependencies": {
+    "@akanass/rx-http-request": "^3.1.0",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-redux": "^7.0.3",
@@ -22,10 +23,10 @@
     "@types/react-dom": "^16.8.4",
     "@types/react-redux": "^7.0.9",
     "awesome-typescript-loader": "^5.2.1",
+    "json-loader": "^0.5.7",
     "source-map-loader": "^0.2.4",
     "tslint": "^5.17.0",
     "tslint-react": "^4.0.0",
-    "typed-rest-client": "^1.5.0",
     "typesafe-actions": "^4.4.0",
     "typescript": "^3.5.1",
     "webpack": "^4.33.0",
