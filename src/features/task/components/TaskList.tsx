@@ -24,9 +24,9 @@ export class TaskList extends React.Component<ITaskListProps, ITaskListState> {
             case 'TASKS_FETCH_SUCCESS':
                 return <ul>{this.renderTaskList}</ul>
             case 'TASKS_FETCH_ERROR':
-                return <p>Error: {this.props.errorMessage}</p>;
+                return <p>Error: {this.props.errorMessage}</p>
             default:
-                
+                return <p>Unknown status</p>
         }
     }
 

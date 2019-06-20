@@ -6,8 +6,8 @@
   "description": "todo react project with typescript",
   "main": "index.html",
   "scripts": {
-    "start": "webpack-dev-server --mode development --hot --progress --color --port 3000 --open",
-    "build": "webpack -p --progress --colors"
+    "start": "webpack-dev-server --hot --inline --colors --port 3000 --open",
+    "build": "webpack -p --progress --colors --watch"
   },
   "dependencies": {
     "react": "^16.8.6",
@@ -22,8 +22,6 @@
     "@types/react-dom": "^16.8.4",
     "@types/react-redux": "^7.0.9",
     "awesome-typescript-loader": "^5.2.1",
-    "axios": "^0.19.0",
-    "fs": "0.0.1-security",
     "source-map-loader": "^0.2.4",
     "tslint": "^5.17.0",
     "tslint-react": "^4.0.0",

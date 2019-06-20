@@ -1,5 +1,5 @@
 import ITask from '../models/Task'
-import ApiClient from './api.client'
+import ApiClient from './ApiClient'
 
 class ApiImpl {
     public getTask = async (id: number): Promise<ITask> => {

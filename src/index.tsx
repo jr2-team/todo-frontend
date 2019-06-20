@@ -1,5 +1,9 @@
 import * as React from 'react'
 import * as ReactDOM from 'react-dom'
-import { TaskList } from './features/task/components/TaskList'
-import { TaskListItem } from './features/task/components/TaskListItem'
 
+import { Hello } from './features/Hello'
+
+ReactDOM.render(
+    <Hello compiler='TypeScript' framework='React' />,
+    document.getElementById('root'),
+)
