@@ -6,7 +6,7 @@
   "description": "todo react project with typescript",
   "main": "index.html",
   "scripts": {
-    "start": "webpack-dev-server --hot --inline --colors --port 3000 --open",
+    "start": "webpack-dev-server --mode development --hot --inline --progress --color --port 3000 --open",
     "build": "webpack -p --progress --colors --watch"
   },
   "dependencies": {
