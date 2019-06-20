@@ -8,35 +8,29 @@ export interface ITaskListProps {
     errorMessage?: string
 }
 
+export const TaskList: React.SFC<ITaskListProps> = (state) => {
+    return (
+        <>
+            <div>
+                {fetchTasks(state)}
+            </div>
+        </>
+    )
+}
 
-export class TaskList extends React.Component<ITaskListProps> {
-    public render() {
-        return (
-            <>
-            <p>!!!</p>
-            <div>{this.fetchTasks()}</div>
-            </>
-        )
-    }
-
-    private fetchTasks = () => {
-        switch (this.props.status) {
-            case 'TASKS_FETCH':
-                return <p>Loading tasks...</p>
-            case 'TASKS_FETCH_SUCCESS':
-                return <ul>
-                    {this.props.tasks.map((task) =>
-                        <li key={task.id}><TaskListItem task={task}/></li>,
-                    )}
-                </ul>
-            case 'TASKS_FETCH_ERROR':
-                return <p>Error: {this.props.errorMessage}</p>
-            default:
-                return <p>Unknown status1</p>
-        }
-    }
-
-    private renderTaskList = () => {
-        return 
+const fetchTasks = (state: ITaskListProps) => {
+    switch (state.status) {
+        case 'TASKS_FETCH':
+            return <p>Loading tasks...</p>
+        case 'TASKS_FETCH_SUCCESS':
+            return <ul>
+                {state.tasks.map((task) =>
+                    <li key={task.id}><TaskListItem task={task}/></li>,
+                )}
+            </ul>
+        case 'TASKS_FETCH_ERROR':
+            return <p>Error: {state.errorMessage}</p>
+        default:
+            return <p>Unknown status1</p>
     }
 }
