@@ -7,6 +7,9 @@ class ApiImpl {
 
     public getTasks = () =>
         ApiClient.get<ITask[]>('tasks')
+
+    public createTask = (task: ITask) =>
+        ApiClient.create<ITask>('tasks', task)
 }
 
 const Api = new ApiImpl()
