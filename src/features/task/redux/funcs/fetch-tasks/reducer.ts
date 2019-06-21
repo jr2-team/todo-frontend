@@ -1,7 +1,7 @@
 import { Reducer } from 'redux'
 import { ActionType, getType } from 'typesafe-actions'
 import ITasksState from '../../TasksState'
-import InitialState from '../InitialState';
+import InitialState from '../InitialState'
 import * as actions from './actions'
 
 type Action = ActionType<typeof actions>

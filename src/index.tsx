@@ -4,12 +4,12 @@ import { Provider } from 'react-redux'
 import { applyMiddleware, createStore } from 'redux'
 import { createEpicMiddleware } from 'redux-observable'
 import { ActionType } from 'typesafe-actions'
+import App from './common/App.connect'
 /**
  * Redux store setup
  */
 import epics from './common/system/epics'
 import reducers, { IAppState } from './common/system/reducers'
-import App from './features/App.connect'
 import * as actions from './features/task/redux/funcs/fetch-tasks/actions'
 
 type Action = ActionType<typeof actions>

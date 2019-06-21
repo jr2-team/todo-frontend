@@ -6,9 +6,7 @@ import * as actions from '../redux/funcs/fetch-tasks/actions'
 
 type Action = ActionType<typeof actions>
 
-import TaskList, { ITaskListProps } from './TaskList'
-
-interface OwnProps { }
+import TaskList from './TaskList'
 
 const mapStateToProps = (state: IAppState) => ({
     status: state.tasks.status,
@@ -16,8 +14,9 @@ const mapStateToProps = (state: IAppState) => ({
     errorMessage: state.tasks.error,
 })
 
-const mapDispatchToProps = (dispatch: Dispatch<Action>, props: OwnProps) => bindActionCreators({
-    fetchTasks: () => actions.fetchRequest(),
-  }, dispatch)
+const mapDispatchToProps = (dispatch: Dispatch<Action>) => bindActionCreators(
+    { fetchTasks: () => actions.fetchRequest() },
+    dispatch,
+)
 
 export default connect(mapStateToProps, mapDispatchToProps)(TaskList)
