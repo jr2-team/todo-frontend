@@ -1,8 +1,8 @@
 import { connect } from 'react-redux'
 import { bindActionCreators, Dispatch } from 'redux'
 import { ActionType } from 'typesafe-actions'
-import { AppState } from '../../../common/root/reducers'
-import * as actions from '../redux/funcs/tasks-fetch/actions'
+import { IAppState } from '../../../common/system/reducers'
+import * as actions from '../redux/funcs/fetch-tasks/actions'
 
 type Action = ActionType<typeof actions>
 
@@ -10,7 +10,7 @@ import TaskList, { ITaskListProps } from './TaskList'
 
 interface OwnProps { }
 
-const mapStateToProps = (state: AppState) => ({
+const mapStateToProps = (state: IAppState) => ({
     status: state.tasks.status,
     tasks: state.tasks.tasks,
     errorMessage: state.tasks.error,

@@ -16,11 +16,9 @@ export default class TaskList extends React.Component<ITaskListProps> {
 
     public render() {
         return (
-            <>
-                <div>
-                    {this.fetchTasks(this.props)}
-                </div>
-            </>
+            <div>
+                {this.fetchTasks(this.props)}
+            </div>
         )
     }
 
@@ -29,11 +27,17 @@ export default class TaskList extends React.Component<ITaskListProps> {
             case 'TASKS_FETCH':
                 return <p>Loading tasks...</p>
             case 'TASKS_FETCH_SUCCESS':
-                return <ul>
-                    {props.tasks.map((task) =>
-                        <li key={task.id}><TaskListItem task={task}/></li>,
-                    )}
-                </ul>
+                return (
+                    <ul>
+                        {props.tasks.map((task) =>
+                            <li key={task.id}>
+                                <TaskListItem 
+                                    task={task}
+                                />
+                            </li>,
+                        )}
+                    </ul>
+                )
             case 'TASKS_FETCH_ERROR':
                 return <p>Error: {props.errorMessage}</p>
             default:

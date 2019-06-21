@@ -1,17 +1,13 @@
 import { Reducer } from 'redux'
 import { ActionType, getType } from 'typesafe-actions'
+import ITasksState from '../../TasksState'
+import InitialState from '../InitialState';
 import * as actions from './actions'
-import { ITasksState, TasksFetchActionTypes } from './types'
 
 type Action = ActionType<typeof actions>
 
-export const tasksState: ITasksState = {
-    status: 'TASKS_FETCH_SUCCESS',
-    tasks: [],
-}
-
 const reducer: Reducer<ITasksState> = (
-    state: ITasksState = tasksState,
+    state: ITasksState = InitialState,
     action: Action,
 ) => {
     switch (action.type) {

@@ -1,45 +1,32 @@
 import * as React from 'react'
 import * as ReactDOM from 'react-dom'
 import { Provider } from 'react-redux'
-import { applyMiddleware, compose, createStore } from 'redux'
+import { applyMiddleware, createStore } from 'redux'
 import { createEpicMiddleware } from 'redux-observable'
 import { ActionType } from 'typesafe-actions'
 /**
  * Redux store setup
  */
-import epics from './common/root/epics'
-import reducers, { AppState } from './common/root/reducers'
+import epics from './common/system/epics'
+import reducers, { IAppState } from './common/system/reducers'
 import App from './features/App.connect'
-import * as actions from './features/task/redux/funcs/tasks-fetch/actions'
+import * as actions from './features/task/redux/funcs/fetch-tasks/actions'
 
 type Action = ActionType<typeof actions>
+const epicMiddleware = createEpicMiddleware<Action, Action, IAppState>()
 
-declare global {
-    interface Window {
-        __REDUX_DEVTOOLS_EXTENSION_COMPOSE__: Function
-    }
-}
-
-const composeEnhancers = (
-    window && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__
-) || compose
-
-const epicMiddleware = createEpicMiddleware<Action, Action, AppState>()
-
-function configureStore(initialState?: AppState) {
+function configureStore(initialState?: IAppState) {
     // configure middlewares
     const middlewares = [
         epicMiddleware,
     ]
     // compose enhancers
-    const enhancer = composeEnhancers(
-        applyMiddleware(...middlewares),
-    )
+    const enhancers = applyMiddleware(...middlewares)
     // create store
     return createStore(
         reducers,
         initialState,
-        enhancer,
+        enhancers,
     )
 }
 

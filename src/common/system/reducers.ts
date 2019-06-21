@@ -6,8 +6,6 @@ export interface IAppState {
     tasks: ITasksState,
 }
 
-console.log(tasksFetchReducer)
-
 export const appReducers = combineReducers({
     tasks: tasksFetchReducer,
 })

@@ -2,15 +2,17 @@
 import { connect } from 'react-redux'
 import { Dispatch } from 'redux'
 import { ActionType } from 'typesafe-actions'
-import { AppState } from '../common/root/reducers'
+import { IAppState } from '../common/system/reducers'
+
 import App from './App'
-import * as actions from './task/redux/funcs/tasks-fetch/actions'
+
+import * as actions from './task/redux/funcs/fetch-tasks/actions'
 
 type Action = ActionType<typeof actions>
 
 interface IOwnProps { }
 
-const mapStateToProps = (state: AppState) => ({ })
+const mapStateToProps = (state: IAppState) => ({ })
 
 const mapDispatchToProps = (dispatch: Dispatch<Action>, props: IOwnProps) => ({
 })
