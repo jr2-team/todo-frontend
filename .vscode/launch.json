@@ -6,8 +6,12 @@
             "request": "launch",
             "name": "Launch in Chrome",
             "url": "http://localhost:3000",
+<<<<<<< HEAD
             "file": "${workspaceFolder}/index.html",
             "sourceMaps": true
+=======
+            "file": "${workspaceFolder}/index.html"
+>>>>>>> master
         }
     ]
 }
