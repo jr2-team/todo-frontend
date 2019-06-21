@@ -5,32 +5,39 @@ import TaskListItem from './TaskListItem'
 export interface ITaskListProps {
     status: string,
     tasks: ITask[],
-    errorMessage?: string
+    errorMessage?: string,
+    fetchTasks: () => undefined,
 }
 
-export const TaskList: React.SFC<ITaskListProps> = (state) => {
-    return (
-        <>
-            <div>
-                {fetchTasks(state)}
-            </div>
-        </>
-    )
-}
+export default class TaskList extends React.Component<ITaskListProps> {
+    public componentWillMount() {
+        this.props.fetchTasks()
+    }
 
-const fetchTasks = (state: ITaskListProps) => {
-    switch (state.status) {
-        case 'TASKS_FETCH':
-            return <p>Loading tasks...</p>
-        case 'TASKS_FETCH_SUCCESS':
-            return <ul>
-                {state.tasks.map((task) =>
-                    <li key={task.id}><TaskListItem task={task}/></li>,
-                )}
-            </ul>
-        case 'TASKS_FETCH_ERROR':
-            return <p>Error: {state.errorMessage}</p>
-        default:
-            return <p>Unknown status1</p>
+    public render() {
+        return (
+            <>
+                <div>
+                    {this.fetchTasks(this.props)}
+                </div>
+            </>
+        )
+    }
+
+    private fetchTasks = (props: ITaskListProps) => {
+        switch (props.status) {
+            case 'TASKS_FETCH':
+                return <p>Loading tasks...</p>
+            case 'TASKS_FETCH_SUCCESS':
+                return <ul>
+                    {props.tasks.map((task) =>
+                        <li key={task.id}><TaskListItem task={task}/></li>,
+                    )}
+                </ul>
+            case 'TASKS_FETCH_ERROR':
+                return <p>Error: {props.errorMessage}</p>
+            default:
+                return <p>Unknown status1</p>
+        }
     }
 }

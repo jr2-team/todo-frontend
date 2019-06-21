@@ -1,17 +1,17 @@
-import { ActionType, getType, Reducer } from 'typesafe-actions'
+import { Reducer } from 'redux'
+import { ActionType, getType } from 'typesafe-actions'
 import * as actions from './actions'
-import { ITasksState } from './types'
+import { ITasksState, TasksFetchActionTypes } from './types'
 
 type Action = ActionType<typeof actions>
 
-export const initialState: ITasksState = {
-    status: false,
+export const tasksState: ITasksState = {
+    status: 'TASKS_FETCH_SUCCESS',
     tasks: [],
-    error: undefined,
 }
 
-export const tasksFetchReducer: Reducer<ITasksState, Action> = (
-    state: ITasksState = initialState,
+const reducer: Reducer<ITasksState> = (
+    state: ITasksState = tasksState,
     action: Action,
 ) => {
     switch (action.type) {
@@ -25,7 +25,7 @@ export const tasksFetchReducer: Reducer<ITasksState, Action> = (
             return {
                 ...state,
                 status: 'TASKS_FETCH_SUCCESS',
-                tasks: action.payload.tasks,
+                tasks: action.payload,
             }
         }
         case getType(actions.fetchError): {
@@ -36,5 +36,9 @@ export const tasksFetchReducer: Reducer<ITasksState, Action> = (
                 error: action.payload.message,
             }
         }
+        default:
+            return state
     }
 }
+
+export { reducer as tasksFetchReducer}

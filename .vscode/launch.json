@@ -4,9 +4,10 @@
         {
             "type": "chrome",
             "request": "launch",
-            "name": "Launch",
+            "name": "Launch in Chrome",
             "url": "http://localhost:3000",
-            "file": "${workspaceFolder}/index.html"
+            "file": "${workspaceFolder}/index.html",
+            "sourceMaps": true
         }
     ]
 }

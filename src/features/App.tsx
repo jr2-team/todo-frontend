@@ -1,10 +1,9 @@
 import * as React from 'react'
 import TaskList from '../features/task/components/TaskList.connect'
 
-export interface AppProps {
-}
+export interface IAppProps { }
 
-export default class App extends React.Component<AppProps, {}> {
+export default class App extends React.Component<IAppProps, {}> {
   public render() {
     return (
       <div className='app'>

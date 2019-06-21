@@ -1,9 +1,13 @@
-import { action } from 'typesafe-actions'
+import { createAction } from 'typesafe-actions'
 import ITask from '../../../../../data/models/Task'
 import { TasksFetchActionTypes } from './types'
 
-export const fetchRequest = () => action(TasksFetchActionTypes.FETCH_REQUEST)
-export const fetchSuccess = (tasks: ITask[]) =>
-    action(TasksFetchActionTypes.FETCH_SUCCESS, { tasks })
-export const fetchError = (message: string) =>
-    action(TasksFetchActionTypes.FETCH_ERROR, { message })
+export const fetchRequest = createAction(TasksFetchActionTypes.FETCH_REQUEST)
+export const fetchSuccess = createAction(
+    TasksFetchActionTypes.FETCH_SUCCESS,
+    resolve => (tasks: ITask[]) => resolve(tasks),
+)
+export const fetchError = createAction(
+    TasksFetchActionTypes.FETCH_ERROR,
+    resolve => (error: Error) => resolve(error),
+)
