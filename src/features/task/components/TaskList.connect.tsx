@@ -1,21 +1,22 @@
 import { connect } from 'react-redux'
 import { bindActionCreators, Dispatch } from 'redux'
-import { ActionType } from 'typesafe-actions'
 import { IAppState } from '../../../common/system/reducers'
-import * as actions from '../redux/funcs/fetch-tasks/actions'
+import TaskActions from '../redux/funcs/actions'
 
-type Action = ActionType<typeof actions>
-
+import { createRequest } from '../redux/funcs/create-task/actions';
+import { fetchRequest } from '../redux/funcs/fetch-tasks/actions';
 import TaskList from './TaskList'
 
 const mapStateToProps = (state: IAppState) => ({
-    status: state.tasks.status,
+    status: state.tasks.fetchingStatus,
     tasks: state.tasks.tasks,
     errorMessage: state.tasks.error,
 })
 
-const mapDispatchToProps = (dispatch: Dispatch<Action>) => bindActionCreators(
-    { fetchTasks: () => actions.fetchRequest() },
+const mapDispatchToProps = (dispatch: Dispatch<TaskActions>) => bindActionCreators({
+        fetchTasks: fetchRequest,
+        createTask: createRequest,
+    },
     dispatch,
 )
 

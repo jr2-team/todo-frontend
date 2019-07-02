@@ -1,7 +1,7 @@
 import ITasksState from '../TasksState'
 
 const InitialState: ITasksState = {
-    status: 'TASKS_FETCH',
+    fetchingStatus: 'TASKS_FETCH_REQUEST',
     tasks: [],
 }
 

@@ -1,40 +1,26 @@
-import { Reducer } from 'redux'
-import { ActionType, getType } from 'typesafe-actions'
+import { ActionType, createReducer } from 'typesafe-actions'
 import ITasksState from '../../TasksState'
+import TaskActions from '../actions';
 import InitialState from '../InitialState'
 import * as actions from './actions'
 
 type Action = ActionType<typeof actions>
 
-const reducer: Reducer<ITasksState> = (
-    state: ITasksState = InitialState,
-    action: Action,
-) => {
-    switch (action.type) {
-        case getType(actions.fetchRequest): {
-            return {
-                ...state,
-                status: 'TASKS_FETCH',
-            }
-        }
-        case getType(actions.fetchSuccess): {
-            return {
-                ...state,
-                status: 'TASKS_FETCH_SUCCESS',
-                tasks: action.payload,
-            }
-        }
-        case getType(actions.fetchError): {
-            return {
-                ...state,
-                status: 'TASKS_FETCH_ERROR',
-                tasks: [],
-                error: action.payload.message,
-            }
-        }
-        default:
-            return state
-    }
-}
+const reducer = createReducer<ITasksState, TaskActions>(InitialState)
+    .handleAction(actions.fetchRequest, (s, _) => ({
+        ...s,
+        fetchingStatus: 'TASKS_FETCH_REQUEST',
+    }))
+    .handleAction(actions.fetchSuccess, (s, a) => ({
+        ...s,
+        fetchingStatus: 'TASKS_FETCH_SUCCESS',
+        tasks: a.payload,
+    }))
+    .handleAction(actions.fetchError, (s, a) => ({
+        ...s,
+        fetchingStatus: 'TASKS_FETCH_ERROR',
+        tasks: [],
+        error: a.payload.message,
+    }))
 
 export { reducer as tasksFetchReducer}

@@ -20,6 +20,8 @@ const fetchTasksEpic: Epic<Action, Action, IAppState> = (action$, store) => {
     )
 }
 
-export default [
+const fetchTasksEpics = [
     fetchTasksEpic,
 ]
+
+export default fetchTasksEpics

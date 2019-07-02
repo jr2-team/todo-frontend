@@ -1,8 +1,10 @@
 import { combineEpics } from 'redux-observable'
-import FetchTasksEpic from '../../features/task/redux/funcs/fetch-tasks/epic'
+import createTaskEpics from '../../features/task/redux/funcs/create-task/epic'
+import fetchTasksEpics from '../../features/task/redux/funcs/fetch-tasks/epic'
 
 const epics = combineEpics(
-    ...FetchTasksEpic,
+    ...fetchTasksEpics,
+    ...createTaskEpics,
 )
 
 export default epics

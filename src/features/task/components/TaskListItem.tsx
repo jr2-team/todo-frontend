@@ -1,13 +1,15 @@
 import * as React from 'React'
 import ITask from '../../../data/models/Task'
 
-interface ITaskListItemProps {
+interface ITaskListItemStateProps {
     task: ITask
 }
 
-const TaskListItem: React.FC<ITaskListItemProps> = (props: ITaskListItemProps) => {
+const TaskListItem: React.FC<ITaskListItemStateProps> = (props: ITaskListItemStateProps) => {
+    const { name, status } = props.task
+
     return (
-        <p>{props.task.name} - {props.task.status}</p>
+        <p>{name} - {status}</p>
     )
 }
 

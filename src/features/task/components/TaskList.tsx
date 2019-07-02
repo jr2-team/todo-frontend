@@ -1,47 +1,74 @@
 import * as React from 'React'
+import * as io from 'socket.io-client'
 import ITask from '../../../data/models/Task'
 import TaskListItem from './TaskListItem'
 
-export interface ITaskListProps {
+interface ITaskListStateProps {
     status: string,
     tasks: ITask[],
     errorMessage?: string,
-    fetchTasks: () => undefined,
 }
 
-export default class TaskList extends React.Component<ITaskListProps> {
-    public componentWillMount() {
+interface ITaskListDispatchProps {
+    fetchTasks: () => void,
+    createTask: (task: ITask) => void,
+}
+
+export type Props = ITaskListStateProps & ITaskListDispatchProps
+
+export default class TaskList extends React.Component<Props> {
+    public componentDidMount() {
+        const socket = io('http://localhost:8080/sio/v1/tasks')
+        socket.connect()
+        socket.on('receiveTasks', (tasks: ITask[]) => {
+            console.log(tasks)
+        })
         this.props.fetchTasks()
     }
 
     public render() {
         return (
             <div>
-                {this.fetchTasks(this.props)}
+                {this.fetchTasks()}
             </div>
         )
     }
 
-    private fetchTasks = (props: ITaskListProps) => {
-        switch (props.status) {
-            case 'TASKS_FETCH':
+    private fetchTasks = () => {
+        const {
+            status,
+            tasks,
+            errorMessage,
+        } = this.props
+
+        switch (status) {
+            case 'TASKS_FETCH_REQUEST':
                 return <p>Loading tasks...</p>
             case 'TASKS_FETCH_SUCCESS':
                 return (
-                    <ul>
-                        {props.tasks.map((task) =>
-                            <li key={task.id}>
-                                <TaskListItem 
-                                    task={task}
-                                />
-                            </li>,
-                        )}
-                    </ul>
+                    <div>
+                        <ul>
+                            {tasks.map(this.renderTask)}
+                        </ul>
+                        <button onClick={this.onNewTaskClick}/>
+                    </div>
                 )
             case 'TASKS_FETCH_ERROR':
-                return <p>Error: {props.errorMessage}</p>
+                return <p>Error: {errorMessage}</p>
             default:
-                return <p>Unknown status1</p>
+                return <p>Unknown status</p>
         }
     }
+
+    private onNewTaskClick = () => {
+        console.log('on create clicked')
+        this.props.createTask({
+            id: 0,
+            name: `new task ${Math.floor(Math.random() * Math.floor(1000))}`,
+            status: 1,
+        })
+    }
+
+    private renderTask = (task: ITask) =>
+        <li key={task.id}><TaskListItem task={task} /></li>
 }
