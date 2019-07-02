@@ -5,15 +5,30 @@ interface ITaskListItemStateProps {
     task: ITask
 }
 
-const TaskListItem: React.FC<ITaskListItemStateProps> = (props: ITaskListItemStateProps) => {
-    const { name, status } = props.task
-
-    return (
-        <div>
-            <p>{name} - {status}</p>
-            <button>Change Status</button>
-        </div>
-    )
+interface ITaskListItemDispatcherProps {
+    updateTask: (task: ITask) => void,
 }
 
-export default TaskListItem
+type TaskListItemProps = ITaskListItemStateProps & ITaskListItemDispatcherProps
+
+export default class TaskListItem extends React.Component<TaskListItemProps> {
+    public render() {
+        const { name, status } = this.props.task
+
+        return (
+            <div>
+                <p>{name} - {status}</p>
+                <button onClick={this.onTaskUpdateStatusClick}>Change Status</button>
+            </div>
+        )
+    }
+
+    private onTaskUpdateStatusClick = () => {
+        const { task } = this.props
+        this.props.updateTask({
+            id: task.id,
+            name: task.name,
+            status: task.status === 0 ? 1 : 0,
+        })
+    }
+}

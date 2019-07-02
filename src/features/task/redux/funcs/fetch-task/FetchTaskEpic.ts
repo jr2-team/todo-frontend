@@ -12,8 +12,8 @@ const fetchTaskEpic: Epic<TaskActions, TaskActions, IAppState> = (action$, store
         filter(isActionOf(actions.fetchRequest)),
         mergeMap(() =>
             Api.getTasks().pipe(
-                map((x) => actions.fetchSuccess(x.body)),
-                catchError((e) => of(actions.fetchError(e))),
+                map((response) => actions.fetchSuccess(response.body)),
+                catchError((error) => of(actions.fetchError(error))),
             ),
         ),
     )

@@ -1,10 +1,12 @@
 import createTaskReducer from './create-task/CreateTaskReducer'
 import fetchTaskReducer from './fetch-task/FetchTaskReducer'
 import InitialState from './InitialState'
+import updateTaskReducer from './update-task/UpdateTaskReducer'
 
 const tasksReducers = [
     createTaskReducer,
     fetchTaskReducer,
+    updateTaskReducer,
 ]
 
 // TODO: Fix any

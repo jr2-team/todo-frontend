@@ -1,5 +1,5 @@
 import { ActionType, createReducer } from 'typesafe-actions'
-import ITaskState from '../../TasksState'
+import ITaskState from '../../TaskState'
 import InitialState from '../InitialState'
 import * as actions from './FetchTaskActions'
 

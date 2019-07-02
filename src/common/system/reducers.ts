@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux'
 import tasksReducers from '../../features/task/redux/funcs/TaskReducer';
-import ITaskState from '../../features/task/redux/TasksState'
+import ITaskState from '../../features/task/redux/TaskState'
 
 export interface IAppState {
     tasks: ITaskState,

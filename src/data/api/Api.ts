@@ -9,7 +9,10 @@ class ApiImpl {
         ApiClient.get<ITask[]>('tasks')
 
     public createTask = (task: ITask) =>
-        ApiClient.create<ITask>('tasks', task)
+        ApiClient.create('tasks', task)
+
+    public updateTask = (task: ITask) =>
+        ApiClient.update(`tasks/${task.id}`, task)
 }
 
 const Api = new ApiImpl()

@@ -1,7 +1,7 @@
 import * as React from 'React'
 import * as io from 'socket.io-client'
 import ITask from '../../../data/models/Task'
-import TaskListItem from './TaskListItem'
+import TaskListItem from './TaskListItem.connect'
 
 interface ITaskListStateProps {
     status: string,
@@ -14,18 +14,9 @@ interface ITaskListDispatchProps {
     createTask: (task: ITask) => void,
 }
 
-type Props = ITaskListStateProps & ITaskListDispatchProps
+type TaskListProps = ITaskListStateProps & ITaskListDispatchProps
 
-export default class TaskList extends React.Component<Props> {
-    public componentDidMount() {
-        const socket = io('http://localhost:8080/sio/v1/tasks')
-        socket.connect()
-        socket.on('receiveTasks', (tasks: ITask[]) => {
-            console.log(tasks)
-        })
-        this.props.fetchTasks()
-    }
-
+export default class TaskList extends React.Component<TaskListProps> {
     public render() {
         return (
             <div>
@@ -63,7 +54,6 @@ export default class TaskList extends React.Component<Props> {
     }
 
     private onNewTaskClick = () => {
-        console.log('on create clicked')
         this.props.createTask({
             id: 0,
             name: `new task ${Math.floor(Math.random() * Math.floor(1000))}`,
