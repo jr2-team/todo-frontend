@@ -1,4 +1,4 @@
-import { ActionType, createReducer } from 'typesafe-actions';
+import { ActionType, createReducer } from 'typesafe-actions'
 import ITaskState from '../../TasksState'
 import InitialState from '../InitialState'
 import * as actions from './FetchTaskActions'

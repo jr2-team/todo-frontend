@@ -1,10 +1,10 @@
 import { applyMiddleware, createStore } from 'redux'
 import { createEpicMiddleware } from 'redux-observable'
-import TaskActions from '../../features/task/redux/funcs/TaskActions'
+import Actions from './actions'
 import epics from './epics'
 import reducers, { IAppState } from './reducers'
 
-const epicMiddleware = createEpicMiddleware<TaskActions, TaskActions, IAppState>()
+const epicMiddleware = createEpicMiddleware<Actions, Actions, IAppState>()
 
 const configureStore = (initialState?: IAppState) => {
     // configure middleware

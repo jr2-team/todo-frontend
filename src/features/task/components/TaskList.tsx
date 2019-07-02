@@ -14,7 +14,7 @@ interface ITaskListDispatchProps {
     createTask: (task: ITask) => void,
 }
 
-export type Props = ITaskListStateProps & ITaskListDispatchProps
+type Props = ITaskListStateProps & ITaskListDispatchProps
 
 export default class TaskList extends React.Component<Props> {
     public componentDidMount() {
