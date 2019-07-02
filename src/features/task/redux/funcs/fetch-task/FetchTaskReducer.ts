@@ -1,12 +1,11 @@
-import { ActionType, createReducer } from 'typesafe-actions'
-import ITasksState from '../../TasksState'
-import TaskActions from '../actions';
+import { ActionType, createReducer } from 'typesafe-actions';
+import ITaskState from '../../TasksState'
 import InitialState from '../InitialState'
-import * as actions from './actions'
+import * as actions from './FetchTaskActions'
 
-type Action = ActionType<typeof actions>
+type Actions = ActionType<typeof actions>
 
-const reducer = createReducer<ITasksState, TaskActions>(InitialState)
+const fetchTaskReducer = createReducer<ITaskState, Actions>(InitialState)
     .handleAction(actions.fetchRequest, (s, _) => ({
         ...s,
         fetchingStatus: 'TASKS_FETCH_REQUEST',
@@ -23,4 +22,4 @@ const reducer = createReducer<ITasksState, TaskActions>(InitialState)
         error: a.payload.message,
     }))
 
-export { reducer as tasksFetchReducer}
+export default fetchTaskReducer

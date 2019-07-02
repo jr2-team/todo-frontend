@@ -1,11 +1,12 @@
 import * as lodash from 'lodash'
 import { ActionType, createReducer } from 'typesafe-actions'
-import ITasksState from '../../TasksState'
-import TaskActions from '../actions'
+import ITaskState from '../../TasksState'
 import InitialState from '../InitialState'
-import * as actions from './actions'
+import * as actions from './CreateTaskActions'
 
-const reducer = createReducer<ITasksState, TaskActions>(InitialState)
+type Actions = ActionType<typeof actions>
+
+const createTaskReducer = createReducer<ITaskState, Actions>(InitialState)
     .handleAction(actions.createRequest, (s, _) => {
         console.log(`create request: ${_.payload}`)
         return s
@@ -32,4 +33,4 @@ const createItem = <T>(item: T, list: T[]) => {
     return newList
 }
 
-export { reducer as taskCreateReducer }
+export default createTaskReducer

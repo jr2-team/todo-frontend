@@ -1,10 +1,9 @@
 import { connect } from 'react-redux'
 import { bindActionCreators, Dispatch } from 'redux'
 import { IAppState } from '../../../common/system/reducers'
-import TaskActions from '../redux/funcs/actions'
-
-import { createRequest } from '../redux/funcs/create-task/actions';
-import { fetchRequest } from '../redux/funcs/fetch-tasks/actions';
+import { createRequest } from '../redux/funcs/create-task/CreateTaskActions'
+import { fetchRequest } from '../redux/funcs/fetch-task/FetchTaskActions'
+import TaskActions from '../redux/funcs/TaskActions'
 import TaskList from './TaskList'
 
 const mapStateToProps = (state: IAppState) => ({

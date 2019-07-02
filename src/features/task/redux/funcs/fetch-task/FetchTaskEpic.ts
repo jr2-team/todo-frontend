@@ -1,14 +1,13 @@
 import { Epic } from 'redux-observable'
 import { of } from 'rxjs'
 import { catchError, filter, map, mergeMap } from 'rxjs/operators'
-import { ActionType, isActionOf } from 'typesafe-actions'
+import { isActionOf } from 'typesafe-actions'
 import { IAppState } from '../../../../../common/system/reducers'
 import Api from '../../../../../data/api/Api'
-import * as actions from './actions'
+import TaskActions from '../TaskActions'
+import * as actions from './FetchTaskActions'
 
-type Action = ActionType<typeof actions>
-
-const fetchTasksEpic: Epic<Action, Action, IAppState> = (action$, store) => {
+const fetchTaskEpic: Epic<TaskActions, TaskActions, IAppState> = (action$, store) => {
     return action$.pipe(
         filter(isActionOf(actions.fetchRequest)),
         mergeMap(() =>
@@ -20,8 +19,4 @@ const fetchTasksEpic: Epic<Action, Action, IAppState> = (action$, store) => {
     )
 }
 
-const fetchTasksEpics = [
-    fetchTasksEpic,
-]
-
-export default fetchTasksEpics
+export default fetchTaskEpic

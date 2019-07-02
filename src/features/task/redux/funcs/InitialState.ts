@@ -1,6 +1,6 @@
-import ITasksState from '../TasksState'
+import ITaskState from '../TasksState'
 
-const InitialState: ITasksState = {
+const InitialState: ITaskState = {
     fetchingStatus: 'TASKS_FETCH_REQUEST',
     tasks: [],
 }

@@ -6,7 +6,7 @@ import { IAppState } from './system/reducers'
 
 import App from './App'
 
-import * as actions from '../features/task/redux/funcs/fetch-tasks/actions'
+import * as actions from '../features/task/redux/funcs/TaskActions'
 
 type Action = ActionType<typeof actions>
 

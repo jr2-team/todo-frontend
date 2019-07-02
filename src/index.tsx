@@ -2,7 +2,7 @@ import * as React from 'react'
 import * as ReactDOM from 'react-dom'
 import { Provider } from 'react-redux'
 import App from './common/App.connect'
-import { configureStore, epicMiddleware } from './common/system/store'
+import configureStore from './common/system/store'
 
 const store = configureStore()
 

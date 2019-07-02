@@ -9,7 +9,10 @@ const TaskListItem: React.FC<ITaskListItemStateProps> = (props: ITaskListItemSta
     const { name, status } = props.task
 
     return (
-        <p>{name} - {status}</p>
+        <div>
+            <p>{name} - {status}</p>
+            <button>Change Status</button>
+        </div>
     )
 }
 

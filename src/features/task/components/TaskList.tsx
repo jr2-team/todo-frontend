@@ -50,7 +50,9 @@ export default class TaskList extends React.Component<Props> {
                         <ul>
                             {tasks.map(this.renderTask)}
                         </ul>
-                        <button onClick={this.onNewTaskClick}/>
+                        <button onClick={this.onNewTaskClick}>
+                            Add new task
+                        </button>
                     </div>
                 )
             case 'TASKS_FETCH_ERROR':
